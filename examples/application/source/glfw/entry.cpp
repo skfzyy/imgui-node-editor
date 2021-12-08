@@ -161,6 +161,8 @@ int main(int, char**)
         // - When io.WantCaptureKeyboard is true, do not dispatch keyboard input data to your main application.
         // Generally you may always pass all inputs to dear imgui, and hide them from your application based on those two flags.
         glfwPollEvents();
+        
+        //新建一侦
         ImGui_ImplGlfwGL3_NewFrame();
 
         ImGui::SetNextWindowPos(ImVec2(0, 0));

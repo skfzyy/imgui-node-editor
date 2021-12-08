@@ -7,13 +7,11 @@
 // CREDITS
 //   Written by Michal Cichon
 //------------------------------------------------------------------------------
-# include "imgui_node_editor_internal.h"
-# include <algorithm>
-
+#include "imgui_node_editor_internal.h"
+#include <algorithm>
 
 //------------------------------------------------------------------------------
 static ax::NodeEditor::Detail::EditorContext* s_Editor = nullptr;
-
 
 //------------------------------------------------------------------------------
 template <typename C, typename I, typename F>
@@ -38,14 +36,15 @@ static int BuildIdList(C& container, I* list, int listSize, F&& accept)
         return count;
     }
     else
-        return static_cast<int>(std::count_if(container.begin(), container.end(), accept));
+        return static_cast<int>(
+            std::count_if(container.begin(), container.end(), accept));
 }
-
 
 //------------------------------------------------------------------------------
 ax::NodeEditor::EditorContext* ax::NodeEditor::CreateEditor(const Config* config)
 {
-    return reinterpret_cast<ax::NodeEditor::EditorContext*>(new ax::NodeEditor::Detail::EditorContext(config));
+    return reinterpret_cast<ax::NodeEditor::EditorContext*>(
+        new ax::NodeEditor::Detail::EditorContext(config));
 }
 
 void ax::NodeEditor::DestroyEditor(EditorContext* ctx)
@@ -206,7 +205,9 @@ ImDrawList* ax::NodeEditor::GetNodeBackgroundDrawList(NodeId nodeId)
         return nullptr;
 }
 
-bool ax::NodeEditor::Link(LinkId id, PinId startPinId, PinId endPinId, const ImVec4& color/* = ImVec4(1, 1, 1, 1)*/, float thickness/* = 1.0f*/)
+bool ax::NodeEditor::Link(LinkId id, PinId startPinId, PinId endPinId,
+                          const ImVec4& color /* = ImVec4(1, 1, 1, 1)*/,
+                          float thickness /* = 1.0f*/)
 {
     return s_Editor->DoLink(id, startPinId, endPinId, ImColor(color), thickness);
 }
@@ -239,7 +240,8 @@ bool ax::NodeEditor::QueryNewLink(PinId* startId, PinId* endId)
     return context.QueryLink(startId, endId) == Result::True;
 }
 
-bool ax::NodeEditor::QueryNewLink(PinId* startId, PinId* endId, const ImVec4& color, float thickness)
+bool ax::NodeEditor::QueryNewLink(PinId* startId, PinId* endId, const ImVec4& color,
+                                  float thickness)
 {
     using Result = ax::NodeEditor::Detail::CreateItemAction::Result;
 
@@ -421,18 +423,14 @@ int ax::NodeEditor::GetSelectedObjectCount()
 
 int ax::NodeEditor::GetSelectedNodes(NodeId* nodes, int size)
 {
-    return BuildIdList(s_Editor->GetSelectedObjects(), nodes, size, [](auto object)
-    {
-        return object->AsNode() != nullptr;
-    });
+    return BuildIdList(s_Editor->GetSelectedObjects(), nodes, size,
+                       [](auto object) { return object->AsNode() != nullptr; });
 }
 
 int ax::NodeEditor::GetSelectedLinks(LinkId* links, int size)
 {
-    return BuildIdList(s_Editor->GetSelectedObjects(), links, size, [](auto object)
-    {
-        return object->AsLink() != nullptr;
-    });
+    return BuildIdList(s_Editor->GetSelectedObjects(), links, size,
+                       [](auto object) { return object->AsLink() != nullptr; });
 }
 
 void ax::NodeEditor::ClearSelection()
@@ -567,18 +565,14 @@ int ax::NodeEditor::GetActionContextSize()
 
 int ax::NodeEditor::GetActionContextNodes(NodeId* nodes, int size)
 {
-    return BuildIdList(s_Editor->GetSelectedObjects(), nodes, size, [](auto object)
-    {
-        return object->AsNode() != nullptr;
-    });
+    return BuildIdList(s_Editor->GetSelectedObjects(), nodes, size,
+                       [](auto object) { return object->AsNode() != nullptr; });
 }
 
 int ax::NodeEditor::GetActionContextLinks(LinkId* links, int size)
 {
-    return BuildIdList(s_Editor->GetSelectedObjects(), links, size, [](auto object)
-    {
-        return object->AsLink() != nullptr;
-    });
+    return BuildIdList(s_Editor->GetSelectedObjects(), links, size,
+                       [](auto object) { return object->AsLink() != nullptr; });
 }
 
 void ax::NodeEditor::EndShortcut()

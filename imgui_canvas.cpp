@@ -94,7 +94,9 @@ bool ImGuiEx::Canvas::Begin(ImGuiID id, const ImVec2& size)
 {
     IM_ASSERT(m_InBeginEnd == false);
 
+    //获取光标位置
     m_WidgetPosition = ImGui::GetCursorScreenPos();
+    
     m_WidgetSize = ImSelectPositive(size, ImGui::GetContentRegionAvail());
     m_WidgetRect = ImRect(m_WidgetPosition, m_WidgetPosition + m_WidgetSize);
     m_DrawList = ImGui::GetWindowDrawList();

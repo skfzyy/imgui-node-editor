@@ -210,6 +210,7 @@ struct Object
     inline friend DrawFlags& operator|=(DrawFlags& lhs, DrawFlags rhs) { lhs = lhs | rhs; return lhs; }
     inline friend DrawFlags& operator&=(DrawFlags& lhs, DrawFlags rhs) { lhs = lhs & rhs; return lhs; }
 
+    //save the context
     EditorContext* const Editor;
 
     bool    m_IsLive;

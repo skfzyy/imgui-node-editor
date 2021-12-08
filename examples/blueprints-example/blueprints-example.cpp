@@ -888,6 +888,7 @@ void Application_Frame()
 
     ImGui::Text("FPS: %.2f (%.2gms)", io.Framerate, io.Framerate ? 1000.0f / io.Framerate : 0.0f);
 
+    //设置某个山下文,具体是什么上下文也不知道
     ed::SetCurrentEditor(m_Editor);
 
     //auto& style = ImGui::GetStyle();
@@ -913,6 +914,7 @@ void Application_Frame()
     static float rightPaneWidth = 800.0f;
     Splitter(true, 4.0f, &leftPaneWidth, &rightPaneWidth, 50.0f, 50.0f);
 
+    //画左边的界面
     ShowLeftPane(leftPaneWidth - 4.0f);
 
     ImGui::SameLine(0.0f, 12.0f);

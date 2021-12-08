@@ -51,6 +51,7 @@
 
 namespace ImGuiEx {
 
+//这个CanvasView相当于就是对一片可视区域进行了一个简单的封装
 struct CanvasView
 {
     ImVec2 Origin;
@@ -112,6 +113,7 @@ struct Canvas
     // Must be called only when Begin() retuned true.
     void End();
 
+    //设置可视区域
     // Sets visible region of canvas plane.
     //
     // Origin is an offset of infinite plane origin from top left
